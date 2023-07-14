@@ -2,6 +2,14 @@
 
 # Create your hash here
 
+ 
+new_band = {
+  bassist: "Gene Simmons"
+}
+
+new_band[:vocalist]
+
+require 'pry';binding.pry
 # Steps
 # 1. Create a hash called new_band.
 # 2. Add a bassist to your new_band hash.

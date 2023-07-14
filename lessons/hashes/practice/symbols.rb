@@ -4,6 +4,9 @@ new_tv = {
   "brand" => "Samsung"
 }
 
+require 'pry';binding.pry
+
+# my_hash.transform_keys(&:to_sym)
 # Remember in Ruby, symbols are basically Strings that can’t change.
 # You can recognize a symbol because it starts with a colon :.
 # All of the following are symbols:
