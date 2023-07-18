@@ -137,3 +137,112 @@ denver_biscuit_co = {
     ]
 }
 
+# Challenge 1:
+# Return the name ("Denver Biscuit")
+puts denver_biscuit_co[:name]
+# Return the rating (4.5)
+puts denver_biscuit_co[:rating]
+# Return a list of accepted transactions (["pickup", "delivery"])
+puts denver_biscuit_co[:transactions]
+# Return the first listed category title ("Sandwiches")
+puts denver_biscuit_co[:categories][0][:title]
+# Return the opening hour on Tuesday (day 1) ("0800")
+puts denver_biscuit_co[:hours][0][:open][1][:start]
+# Return the closing hour on Saturday (day 5) ("1500")
+puts denver_biscuit_co[:hours][0][:open][5][:end]
+# Return the current open status (is_now_open) (true)
+puts denver_biscuit_co[:hours][0][:is_open_now]
+
+# Challenge 2: 
+# Get the address, and return it into a readable format. ("3237 E Colfax Ave, Denver, CO 80206" )
+# puts "#{denver_biscuit_co[:location][:display_address][0]}, #{denver_biscuit_co[:location][:display_address][1]}"
+
+readable_address = denver_biscuit_co[:location][:display_address]
+p readable_address.join(", ")
+
+# Return a list of categories this restaurant fits into (["Sandwiches", "Breakfast & Brunch"])
+categories = []
+categories << denver_biscuit_co[:categories][0][:title]
+categories << denver_biscuit_co[:categories][1][:title]
+p categories
+
+
+# Challenge 3 (extra spicy): 
+# Get the operation hours, and format a return value such that it looks like this: 
+puts denver_biscuit_co[:hours][0][:open]
+monday = {
+    start: denver_biscuit_co[:hours][0][:open][0][:start],
+    end: denver_biscuit_co[:hours][0][:open][0][:end]
+}
+wednesday = {
+    start: denver_biscuit_co[:hours][0][:open][1][:start],
+    end: denver_biscuit_co[:hours][0][:open][1][:end]
+}
+
+tuesday = {
+    start: denver_biscuit_co[:hours][0][:open][2][:start],
+    end: denver_biscuit_co[:hours][0][:open][2][:end]
+}
+thursday = {
+    start: denver_biscuit_co[:hours][0][:open][3][:start],
+    end: denver_biscuit_co[:hours][0][:open][3][:end]
+}
+friday = {
+    start: denver_biscuit_co[:hours][0][:open][4][:start],
+    end: denver_biscuit_co[:hours][0][:open][4][:end]
+}
+saturday = {
+    start: denver_biscuit_co[:hours][0][:open][5][:start],
+    end: denver_biscuit_co[:hours][0][:open][5][:end]
+}
+sunday = {
+    start: denver_biscuit_co[:hours][0][:open][6][:start],
+    end: denver_biscuit_co[:hours][0][:open][6][:end]
+}
+
+print operation_hours = {
+    monday: monday, 
+    tuesday: tuesday,
+    wednesday: wednesday,
+    thursday: thursday,
+    friday: friday  
+}
+
+#charles' solution:
+
+operation_hours = {}
+
+denver_biscuit_co[:hours][0][:open].each do |time_slot|
+    start = time_slot[:start]
+    finish = time_slot[:end]
+    day = time_slot[:day]
+
+    operation_hours[days[day]] = {start: start, end: finish}
+end
+
+p operation_hours
+# puts denver_biscuit_co[:hours][0][:open][5][:end]
+
+# {
+    #     Monday: {
+        #             start: "0800" , 
+        #             end: "1400"
+        #         },
+        #     Tuesday: {
+            #             start: "0800" , 
+            #             end: "1400"
+            #         },
+            #     Wednesday: {
+                #             start: "0800", 
+                #             end: "1400"
+                #         },
+                #         ...
+                #         ...
+                #         ....
+                
+                # }
+                # Note: day 0 is Monday, day 6 is Sunday
+                
+                
+                
+                
