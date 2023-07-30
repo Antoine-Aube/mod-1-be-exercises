@@ -61,7 +61,7 @@
     end  
   end
   
-  xdescribe "can_register?" do 
+  describe "can_register?" do 
     it "can registed contestants based on contestant attributes" do 
       alexander.add_game_interest('Pick 4')
       alexander.add_game_interest('Mega Millions')
@@ -69,11 +69,13 @@
       winston.add_game_interest('Cash 5')
       winston.add_game_interest('Mega Millions')
       benjamin.add_game_interest('Mega Millions')
+      # require 'pry';binding.pry
 
       expect(lottery.can_register?(alexander, pick_4)).to eq(true)
       expect(lottery.can_register?(alexander, cash_5)).to eq(false)
       expect(lottery.can_register?(frederick, mega_millions)).to eq(true)
       expect(lottery.can_register?(benjamin, mega_millions)).to eq(false)
+      # require 'pry';binding.pry
       expect(lottery.can_register?(frederick, cash_5)).to eq(false)
     end
   end
