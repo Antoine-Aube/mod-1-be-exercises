@@ -45,7 +45,7 @@
     it{expect(lottery.current_contestants).to eq({})}
   end
 
-  xdescribe "#interested_and_18?" do 
+  describe "#interested_and_18?" do 
     it "return a boolean based on contestand ages and game interests" do 
       alexander.add_game_interest('Pick 4')
       alexander.add_game_interest('Mega Millions')
@@ -55,6 +55,7 @@
       benjamin.add_game_interest('Mega Millions')
       
       expect(lottery.interested_and_18?(alexander, pick_4)).to eq(true)
+      # require 'pry';binding.pry
       expect(lottery.interested_and_18?(benjamin, mega_millions)).to eq(false)
       expect(lottery.interested_and_18?(alexander, cash_5)).to eq(false)
     end  
