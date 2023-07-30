@@ -37,6 +37,13 @@
                   state_of_residence: 'CO',
                   spending_money: 5})
                 }
+  let(:antoine) {Contestant.new({
+                  first_name: 'Antoine',
+                  last_name: 'Aube',
+                  age: 32,
+                  state_of_residence: 'CO',
+                  spending_money: 1})
+                }
 
   describe "intialize and has attributes" do 
     it{expect(lottery).to be_a ColoradoLottery}
@@ -77,6 +84,44 @@
       expect(lottery.can_register?(benjamin, mega_millions)).to eq(false)
       # require 'pry';binding.pry
       expect(lottery.can_register?(frederick, cash_5)).to eq(false)
+    end
+  end
+  
+  describe "register contestant" do 
+    it "can only register a contestant if #can_register == true" do 
+      alexander.add_game_interest('Pick 4')
+      alexander.add_game_interest('Mega Millions')
+      frederick.add_game_interest('Mega Millions')
+      winston.add_game_interest('Cash 5')
+      winston.add_game_interest('Mega Millions')
+      benjamin.add_game_interest('Mega Millions')
+      
+      
+      expect(lottery.register_contestant(alexander, pick_4)).to eq(alexander)
+      expect(lottery.register_contestant(alexander, cash_5)).to eq(nil)
+      expect(lottery.register_contestant(frederick, mega_millions)).to eq(frederick)
+      expect(lottery.register_contestant(benjamin, mega_millions)).to eq(nil)
+      # require 'pry';binding.pry
+      expect(lottery.register_contestant(frederick, cash_5)).to eq(nil)
+      expect(lottery.registered_contestants).to eq({pick_4 => [alexander], mega_millions => [frederick]})
+    end
+  end 
+  describe "eligible contestant" do 
+    it "returns an array of contestants who have enough money to play the game" do 
+      alexander.add_game_interest('Pick 4')
+      alexander.add_game_interest('Mega Millions')
+      frederick.add_game_interest('Mega Millions')
+      winston.add_game_interest('Cash 5')
+      winston.add_game_interest('Mega Millions')
+      benjamin.add_game_interest('Mega Millions')
+      antoine.add_game_interest('Pick 4')
+
+      lottery.register_contestant(frederick, mega_millions)
+      lottery.register_contestant(alexander, pick_4)
+      lottery.register_contestant(antoine, pick_4)
+      require 'pry';binding.pry
+      expect(lottery.eligible_contestants(pick_4)).to eq([alexander])
+      expect(lottery.eligible_contestants(mega_millions)).to eq([frederick])
     end
   end
 end
