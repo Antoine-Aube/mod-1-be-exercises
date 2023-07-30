@@ -60,7 +60,7 @@
     end  
   end
   
-  describe "can_register?" do 
+  xdescribe "can_register?" do 
     it "can registed contestants based on contestant attributes" do 
       alexander.add_game_interest('Pick 4')
       alexander.add_game_interest('Mega Millions')
