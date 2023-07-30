@@ -17,7 +17,7 @@ RSpec.describe Contestant do
     it{ expect(alexander.out_of_state?).to eq(false) }
   end
 
-  desribe "#game_interests" do 
+  describe "#game_interests" do 
     it "has game interested represented by an empty array" do
       expect(alexander.game_interests).to eq([])
     end
