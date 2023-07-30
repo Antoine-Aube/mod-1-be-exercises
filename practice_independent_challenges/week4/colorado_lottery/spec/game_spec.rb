@@ -10,7 +10,7 @@ RSpec.describe Game do
     it{expect(pick_4).to be_a Game}
     it{expect(mega_millions.name).to eq("Mega Millions")}
     it{expect(mega_millions.cost).to eq(5)}
-    it{expect(mega_millions.national_drawing).to be true}
+    it{expect(mega_millions.national_drawing?).to be true}
     it{expect(pick_4.national_drawing?).to be false}
   end
 end
