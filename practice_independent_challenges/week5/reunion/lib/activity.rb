@@ -17,4 +17,10 @@ class Activity
   def split
     total_cost / @participants.keys.count
   end
+
+  def owed
+    @participants.transform_values do |value|
+      (value - split) * -1
+    end
+  end
 end
