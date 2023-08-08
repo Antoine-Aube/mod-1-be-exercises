@@ -23,9 +23,19 @@ RSpec.describe Activity do
     it "can calculate total cost" do 
       activity.add_participant("Maria", 20)
       activity.add_participant("Luther", 40)
-      require 'pry';binding.pry
+      # require 'pry';binding.pry
       expect(activity.participants).to eq({"Maria" => 20, "Luther" => 40})
       expect(activity.total_cost).to eq(60)
     end 
+  end
+
+  describe "#split" do 
+    it "can split the total cost by the amouf ot participants" do
+      activity.add_participant("Maria", 20)
+      activity.add_participant("Luther", 40)
+
+      expect(activity.total_cost).to eq(60)
+      expect(activity,split).to eq(30)
+    end
   end
 end
