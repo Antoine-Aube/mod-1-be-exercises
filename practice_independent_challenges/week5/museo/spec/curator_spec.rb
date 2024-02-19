@@ -57,6 +57,17 @@ let (:artist_2) {Artist.new({
       expect(curator.artists).to eq([artist_1, artist_2])
       expect(curator.photographs).to eq([photo_1, photo_2])
     end
+
+    it "#find_artist_by_id()" do 
+      expect(curator.artists).to eq([])
+      expect(curator.photographs).to eq([])
+      
+      curator.add_artist(artist_1)
+      curator.add_artist(artist_2)
+
+      expect(curator.find_artist_by_id("1")).to eq(artist_1)
+
+    end
   end
   
 end
